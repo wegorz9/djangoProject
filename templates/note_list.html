@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h1>All Notes</h1>
+<div class="list-group">
+    {% for note in object_list %}
+        <a href="{% url 'note_detail' note.pk %}" class="list-group-item list-group-item-action">
+            {{ note.title }} - <small>{{ note.get_priority_display }}</small> - <small>Last edited: {{ note.edited }}</small>
+        </a>
+    {% empty %}
+        <div class="alert alert-warning" role="alert">
+            No notes available.
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
