@@ -23,6 +23,17 @@ def note_detail_view(request, pk):
     return render(request, 'note_detail.html', {'form': form})
 
 
+def note_create_view(request):
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('note_list')
+    else:
+        form = NoteForm(instance=note)
+    return render(request, 'note_create.html', {'form': form})
+
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .forms import SignUpForm
