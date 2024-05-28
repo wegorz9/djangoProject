@@ -23,7 +23,8 @@ def note_detail_view(request, pk):
     return render(request, 'note_detail.html', {'form': form})
 
 
-def note_create_view(request):
+def note_create_view(request, pk):
+    note = get_object_or_404(Note, pk=pk)
     if request.method == 'POST':
         form = NoteForm(request.POST)
         if form.is_valid():
