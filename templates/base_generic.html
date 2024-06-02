@@ -11,30 +11,58 @@
             background-color: #4a4a4a;
             color: white;
         }
+        .rounded{
+            border-radius: 15px !important;
+        }
+        .badge{
+            border-radius: 15000px !important;
+
+        }
+        .note{
+            margin-block: 7px;
+            border-color: transparent !important;
+        }
+
+        .max{
+            background-color: #ff2828;
+        }
+        .impo{
+            background-color: #ff7300;
+            {#color: #4a5055;#}
+        }
+        .stand{
+            background-color: #7eff3b;
+            color: #5c6268;
+        }
+        .unimpo{
+            background-color: transparent;
+            border: white solid 2px;
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-inline: 15px">
         <a class="navbar-brand" href="{% url 'note_list' %}">Note-Taking App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
+{#        <div class="collapse navbar-collapse" id="navbarNav">#}
+{#            <ul class="navbar-nav ms-auto">#}
+{#                {% if user.is_authenticated %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>#}
+{#                    </li>#}
+{#                {% else %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url 'login' %}">Login</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>#}
+{#                    </li>#}
+{#                {% endif %}#}
+{#            </ul>#}
+{#        </div>#}
     </nav>
 
     <div class="container mt-4">

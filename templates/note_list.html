@@ -14,10 +14,10 @@
 
 <div class="container">
     <div class="row mb-3 text-start">
-      <div class="col-md-3 themed-grid-col"><h1>All Notes</h1></div>
-      <div class="col-md-6 themed-grid-col"></div>
-      <div class="col-md-3 themed-grid-col text-end">
-          <a href="{% url 'note_create' object_list|length %}">
+      <div class="col-md-3"><h1>All Notes</h1></div>
+      <div class="col-md-6"></div>
+      <div class="col-md-3 text-end">
+          <a href="{% url 'note_create' %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#FFFFFF" class="bi bi-plus-circle" viewBox="0 0 16 16">
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
@@ -30,19 +30,19 @@
 
 
 <div class="list-group list-group-flush border-bottom scrollarea">
-    {% for note in object_list %}
+    {% for note in notes %}
 <!--        <a href="{% url 'note_detail' note.pk %}" class="list-group-item list-group-item-action">-->
 <!--            {{ note.title }} - <small>{{ note.get_priority_display }}</small> - <small>Last edited: {{ note.edited }}</small>-->
 <!--        </a>-->
-    <a href="{% url 'note_detail' note.pk %}" class="bg-{% if note.priority == 0 %}success{% else %}secondary{% endif %} rounded list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
+    <a href="{% url 'note_detail' note.pk %}" class="bg-{% if note.priority == 0 %}success{% else %}secondary{% endif %} rounded list-group-item list-group-item-action active py-3 lh-sm note" aria-current="true">
         <div class="d-flex w-100 align-items-center justify-content-between">
           <strong class="mb-1">{{ note.title }}</strong>
           <small>{{ note.edited }}</small>
           <small>
-              <span class="badge bg-{% if note.priority == 0 %}danger
-                {% elif note.priority == 1 %}warning
-               {% elif note.priority == 2 %}info
-               {% elif note.priority == 3 %}success
+              <span class="badge {% if note.priority == 0 %}max
+                {% elif note.priority == 1 %}impo
+               {% elif note.priority == 2 %}stand
+               {% elif note.priority == 3 %}unimpo
                {% endif %}" style="font-size: 1rem">{{ note.get_priority_display }}</span>
 
           </small>

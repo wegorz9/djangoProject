@@ -10,8 +10,18 @@ class NoteListView(ListView):
     template_name = 'note_list.html'
 
 
-@login_required
+def note_list(request):
+    notes = Note.objects.order_by('priority')
+    return render(request, 'note_list.html', {'notes': notes})
+
+
 def note_detail_view(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+    return render(request, 'note_detail.html', {"note": note})
+
+
+
+def note_edit_view(request, pk):
     note = get_object_or_404(Note, pk=pk)
     if request.method == 'POST':
         form = NoteForm(request.POST, instance=note)
@@ -20,18 +30,17 @@ def note_detail_view(request, pk):
             return redirect('note_list')
     else:
         form = NoteForm(instance=note)
-    return render(request, 'note_detail.html', {'form': form})
+    return render(request, 'note_edit.html', {'form': form})
 
-
-def note_create_view(request, pk):
-    note = get_object_or_404(Note, pk=pk)
+def note_create_view(request):
+    # note = get_object_or_404(Note, pk=pk)
     if request.method == 'POST':
         form = NoteForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('note_list')
     else:
-        form = NoteForm(instance=note)
+        form = NoteForm()
     return render(request, 'note_create.html', {'form': form})
 
 
